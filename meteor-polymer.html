@@ -1,0 +1,18 @@
+<head>
+  <title>meteor-polymer</title>
+
+  <link rel="import" href="/elements/my-element.html">
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+
+  <my-element owner="counter"></my-element>
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>

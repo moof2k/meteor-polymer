@@ -1,0 +1,26 @@
+<link rel="import" href="/bower/polymer/polymer.html">
+
+<polymer-element name="my-element" attributes="owner">
+  <template>
+      <div>
+          <input id="counterInput" type="range" value="{{counter}}">
+          <p>You've pressed the button {{counter}} times.</p>
+      </div>
+  </template>
+  <script>
+    Polymer({
+        counter: -1,
+        ready: function() {
+            /* Bind Meteor Session changes to Polymer */
+            var self = this;
+            this.counter_tracker = Tracker.autorun(function() {
+                self.counter = Session.get(self.owner);
+            });
+        },
+        counterChanged: function() {
+            /* Bind Polymer changes back to Meteor */
+            Session.set(this.owner, parseInt(this.counter));
+        }
+    });
+  </script>
+</polymer-element>
